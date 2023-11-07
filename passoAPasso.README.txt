@@ -1,0 +1,5 @@
+1-instalar o netBeans
+2-criar projeto javaWeb
+3-configurar(Bootstrap, css, img)
+4-criar formulario login
+5-recuperar valor digitado

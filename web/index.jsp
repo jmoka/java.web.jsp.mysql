@@ -21,7 +21,7 @@
 <div class="container">
     <div class="card card-login mx-auto text-center bg-dark">
         <div class="card-header mx-auto bg-dark">
-            <span> <img src="img/logo.jpeg" class="w-75" alt="Logo"> </span><br/>
+            <span> <img src="img/logo.jpg" class="w-75" alt="Logo"> </span><br/>
                         <span class="logo_title mt-5"> Login Dashboard </span>
 <!--            <h1>--><?php //echo $message?><!--</h1>-->
 
@@ -32,7 +32,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                     </div>
-                    <input type="text" name="email" class="form-control" placeholder="Username">
+                    <input type="text" name="name" class="form-control" placeholder="Username">
                 </div>
 
                 <div class="input-group form-group">
@@ -45,8 +45,17 @@
                 <div class="form-group">
                     <input type="submit" name="btn" value="Login" class="btn btn-outline-danger float-right login_btn">
                 </div>
-
+                
             </form>
+            <p class="text-danger" align="left">
+        <%
+            String name = request.getParameter("name");
+            String password = request.getParameter("password");
+            out.println(name);
+            out.println("<BR>");
+            out.println(password);
+         %>
+        </p>
         </div>
     </div>
 </div>
@@ -55,3 +64,4 @@
         <<link rel="stylesheet" type ="text/css " href="css/style.css"/>
     </body>
 </html>
+<img src="../../../../Pictures/logo.jpg" alt=""/>
