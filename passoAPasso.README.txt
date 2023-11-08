@@ -3,3 +3,8 @@
 3-configurar(Bootstrap, css, img)
 4-criar formulario login
 5-recuperar valor digitado
+<<<<<<< HEAD
+=======
+6-cração das class de conexao (DB, DbExecption, arquivoProperties)
+7-conectar ao banco
+>>>>>>> e878772 (Criação DB.Teste e Db.Execption, e Testando conexao com o banco)
