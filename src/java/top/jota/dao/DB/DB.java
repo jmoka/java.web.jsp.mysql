@@ -1,13 +1,18 @@
 package top.jota.dao.DB;
 
+
+import com.mysql.cj.protocol.Resultset;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import top.jota.dao.DB.Exception.DbException;
 
 public class DB {           
 
       private static Connection conm;
+      private static PreparedStatement st;
+      private static Resultset rs;
     
     public static Connection getConnection() {
         String url = "jdbc:mysql://localhost:3306/loja";
@@ -38,14 +43,39 @@ public class DB {
     public static void fecharConexao() {
            
         Connection conm = null;
-    if (conm != null) {
-        try {
-            conm.close();
-            System.out.println("Conexao fechada");
+          try {
+                if (conm != null) {
+                    conm.close();
+                }
+                  System.err.println("Conexao Fechada");
         } catch (SQLException e) {
             System.err.println("Erro ao fechar a conexão: " + e.getMessage());
         }
     }
-}
+   
+    
+    public static void fecharStatiment(){    
+         try {
+                if (st != null) {
+                    st.close();
+                   
+                }
+                 System.err.println("Conexao Statiment Fechada");
+           } catch (SQLException e) {
+                System.err.println(new DbException("Erro ao Fechar a Conexao Statiment ==> " + e.getMessage()));
+            }
+    }
+    
+     public static void fecharResultSet(){    
+         try {
+                if (rs != null) {
+                    st.close();
+                   
+                }
+                 System.err.println("Conexao ResultSet Fechada");
+           } catch (SQLException e) {
+                System.err.println(new DbException("Erro ao Fechar a Conexao ResultSet==> " + e.getMessage()));
+            }
+    }
 }
 

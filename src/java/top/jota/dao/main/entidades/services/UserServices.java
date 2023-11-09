@@ -42,16 +42,10 @@ public class UserServices implements UserInterfaces {
             System.err.println(new DbException("Verifique o SQL, dados não inseridos ==> " + e.getMessage()));
         } finally {
             // Feche os recursos no bloco finally
-            try {
-                if (st != null) {
-                    st.close();
-                }
-                if (conm != null) {
-                    conm.close();
-                }
-            } catch (SQLException e) {
-                System.err.println(new DbException("Erro ao Fechar a Conexao ==> " + e.getMessage()));
-            }
+            DB.fecharConexao();
+            DB.fecharStatiment();
+            DB.fecharResultSet();
+           
         }
         return null;
     }
