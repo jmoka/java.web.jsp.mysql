@@ -12,7 +12,7 @@ public class Main {
         
         UserServices userServices = new UserServices();  // inicializar UserService
         userServices.inserir();
-        
+        userServices.autenticarUsuario("patricia", "12");
        
        
     }

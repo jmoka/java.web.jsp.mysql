@@ -11,11 +11,12 @@ import top.jota.dao.main.entidades.Usuario;
 import top.jota.dao.main.entidades.interfacs.UserInterfaces;
 
 public class UserServices implements UserInterfaces {
+     Connection conm = null;
+     PreparedStatement st = null;
+     ResultSet rs = null;
 
     @Override
-    public Usuario inserir() {
-        Connection conm = null;
-        PreparedStatement st = null;
+    public Usuario inserir() {       
 
         try {
             conm = DB.getConnection();
@@ -49,4 +50,45 @@ public class UserServices implements UserInterfaces {
         }
         return null;
     }
+
+    @Override
+    public Usuario autenticarUsuario(String name, String senha) {
+    conm = DB.getConnection();
+
+    try {
+        st = conm.prepareStatement(UserSql.autenticarUsuário());
+        st.setString(1, name);
+        st.setString(2, senha);
+
+        rs = st.executeQuery(); // Execute uma consulta SELECT
+       
+        if (rs.next()) {
+            // Usuário autenticado
+            String nomeUsuario = rs.getString("nome");
+            String senhaUsuario = rs.getString("senha");
+            System.out.println("Usuario autenticado: " + nomeUsuario);
+        } else {
+            System.err.println("Usuario nao encontrado");
+        }
+    } catch (SQLException ex) {
+        System.err.println("Erro ao realizar consulta");
+        System.err.println(new DbException(ex.getMessage()));
+    } finally {
+        // Feche os recursos no bloco finally
+        DB.fecharConexao();
+        DB.fecharStatiment();
+        DB.fecharResultSet();
+    }
+
+    return null;
 }
+
+        
+     
+     }
+
+    
+    
+
+    
+

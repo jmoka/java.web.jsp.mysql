@@ -3,8 +3,9 @@
 3-configurar(Bootstrap, css, img)
 4-criar formulario login
 5-recuperar valor digitado
-<<<<<<< HEAD
-=======
-6-cração das class de conexao (DB, DbExecption, arquivoProperties)
-7-conectar ao banco
->>>>>>> e878772 (Criação DB.Teste e Db.Execption, e Testando conexao com o banco)
+6-conectar o banco
+7-classse User , Interface UserInterface, Serviço UserService
+8-implementar insert e fecharConexao
+9-Ajuste no codigo nas classes userService, DB, main e nos métodos : metodos fecharResultSet , fecharStatiment
+10- Autenticação do Usuário, metodo em UserSQL autenticarUsuário, metodo em UserServices autenticarUsuario
+
