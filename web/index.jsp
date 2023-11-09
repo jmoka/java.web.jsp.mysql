@@ -54,7 +54,7 @@
     UserServices userservices = new UserServices();
     String aut = userservices.autenticarUsuario(nome, senha);
 
-    if ((aut != null && !aut.isEmpty()) || (nome != null && !nome.isEmpty() && senha != null && !senha.isEmpty())) {
+    if ((aut != null)) {
         response.sendRedirect("dashboard.jsp");
     } else if (nome == null || nome.isEmpty()) {
         if (senha == null || senha.isEmpty()) {
@@ -68,9 +68,6 @@
         out.println("Usuário ou Senha não Encontrados");
     }
 %>
-
-
-
 
 
 </p>
