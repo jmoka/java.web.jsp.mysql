@@ -9,4 +9,5 @@
 9-Ajuste no codigo nas classes userService, DB, main e nos métodos : metodos fecharResultSet , fecharStatiment
 10- Autenticação do Usuário, metodo em UserSQL autenticarUsuário, metodo em UserServices autenticarUsuario
 11- Conectando Tela de Login com Logica de Autenticação
+12- Criar a Tela de cadastro de Senha
 

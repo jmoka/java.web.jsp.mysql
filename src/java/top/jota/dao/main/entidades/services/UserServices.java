@@ -16,15 +16,15 @@ public class UserServices implements UserInterfaces {
      ResultSet rs = null;
 
     @Override
-    public Usuario inserir() {       
+    public Usuario inserir(String nome, String senha) {       
 
         try {
             conm = DB.getConnection();
             st = conm.prepareStatement(UserSql.sqlInsert(), PreparedStatement.RETURN_GENERATED_KEYS);
 
             // Passe as informações para cada parâmetro do SQL
-            st.setString(1, "Cupu");
-            st.setString(2, "123");
+            st.setString(1, nome);
+            st.setString(2, senha);
 
             // Execute o SQL
             int linhasAfetadas = st.executeUpdate(); // retorna um int
@@ -52,12 +52,12 @@ public class UserServices implements UserInterfaces {
     }
 
     @Override
-    public  String autenticarUsuario(String name, String senha) {
+    public  String autenticarUsuario(String nome, String senha) {
     conm = DB.getConnection();
 
     try {
         st = conm.prepareStatement(UserSql.autenticarUsuário());
-        st.setString(1, name);
+        st.setString(1, nome);
         st.setString(2, senha);
 
         rs = st.executeQuery(); // Execute uma consulta SELECT

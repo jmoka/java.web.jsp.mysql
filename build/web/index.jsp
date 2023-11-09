@@ -40,30 +40,43 @@
                         <input type="password" name="senha" class="form-control" placeholder="Password">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group">                        
                         <input type="submit" name="btn" value="Login" class="btn btn-outline-danger float-right login_btn">
                     </div>
+                                     
                 </form>
+               
 
                <p class="text-danger" align="left">
-    <%
+<%
     String nome = request.getParameter("nome");
     String senha = request.getParameter("senha");
     UserServices userservices = new UserServices();
     String aut = userservices.autenticarUsuario(nome, senha);
 
-    if (aut != null && !aut.isEmpty()) {
+    if ((aut != null && !aut.isEmpty()) || (nome != null && !nome.isEmpty() && senha != null && !senha.isEmpty())) {
         response.sendRedirect("dashboard.jsp");
-    } else if (nome == null || senha == null || nome.isEmpty() || senha.isEmpty()) {
-        out.println("Informe o Usuário e a Senha");
+    } else if (nome == null || nome.isEmpty()) {
+        if (senha == null || senha.isEmpty()) {
+            out.println("Nome e Senha estão vazios");
+        } else {
+            out.println("Informe o Usuário Campo Vazio");
+        }
+    } else if (senha == null || senha.isEmpty()) {
+        out.println("Campo Senha vazio");
     } else {
         out.println("Usuário ou Senha não Encontrados");
     }
 %>
 
+
+
+
+
 </p>
 
             </div>
+                <div align="right" class = "mr-md-4"> <a href="cadastrarSenha.jsp">Cadastrar</a></div>
         </div>
     </div>
 

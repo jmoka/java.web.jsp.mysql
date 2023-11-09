@@ -1,11 +1,6 @@
-<%-- 
-    Document   : index
-    Created on : 7 de nov. de 2023, 14:51:36
-    Author     : jotac
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="top.jota.dao.main.entidades.services.UserServices"%>
+<%@page import="top.jota.dao.main.entidades.Usuario"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +8,6 @@
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!------ Include the above in your HEAD tag ---------->
     <title>JSP Page</title>
 </head>
 <body>
@@ -37,43 +31,50 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="senha" class="form-control" placeholder="Password">
+                        <input type="password" name="senha" class="form-control" placeholder="Senha">
                     </div>
                     
                      <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="senha2" class="form-control" placeholder="Password">
+                        <input type="password" name="senha2" class="form-control" placeholder="Confirm Senha">
                     </div>
 
                     <div class="form-group">
-                        <input type="submit" name="btn" value="Login" class="btn btn-outline-danger float-right login_btn">
+                        <input type="submit" name="btn" value="Cadastrar" class="btn btn-outline-danger float-right login_btn">
                     </div>
                 </form>
 
                <p class="text-danger" align="left">
-    <%
+               <%
     String nome = request.getParameter("nome");
     String senha = request.getParameter("senha");
+    String senha2 = request.getParameter("senha2");
     UserServices userservices = new UserServices();
-    String aut = userservices.autenticarUsuario(nome, senha);
-
-    if (aut != null && !aut.isEmpty()) {
-        response.sendRedirect("dashboard.jsp");
-    } else if (nome == null || senha == null || nome.isEmpty() || senha.isEmpty()) {
-        out.println("Informe o Usuário e a Senha");
+    
+    if (senha != null && senha.equals(senha2) && senha != null && !senha.isEmpty() && nome != null && !nome.isEmpty()) {
+        Usuario cadastro = userservices.inserir(nome, senha);
+        out.println("Cadastro Efetuado com Sucesso");
+        out.println("<br>");
+        out.println("<a href=\"index.jsp\">Retornar ao Login</a>");        
+    } else if (nome == null && senha == null && senha2 == null) {
+        out.println("");
+    } else if(nome == null || nome.isEmpty()){
+         out.println("Campo nome vazio");
+    } else if (senha == null || senha.isEmpty()){
+        out.println("Campo senha vazio");
+    } else if(senha2 == null || senha2.isEmpty()){
+        out.println(" Campo Confirmar senha está vazio");
     } else {
-        out.println("Usuário ou Senha não Encontrados");
+        out.println("Senha não Confere");
     }
 %>
 
-</p>
-
+                </p>
             </div>
         </div>
     </div>
-
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
 </body>
 </html>

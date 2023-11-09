@@ -12,8 +12,8 @@ import top.jota.dao.main.entidades.Usuario;
  */
 public interface UserInterfaces {
     
-    public String autenticarUsuario(String name, String senha);
-    public Usuario inserir();
+    public String autenticarUsuario(String nome, String senha);
+    public Usuario inserir(String nome, String senha);
     
   
     
