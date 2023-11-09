@@ -12,6 +12,6 @@ import top.jota.dao.main.entidades.Usuario;
  */
 public interface UserInterfaces {
     
-    public Usuario inserir(Integer id);
+    public Usuario inserir();
        
 }
