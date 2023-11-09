@@ -52,7 +52,7 @@ public class UserServices implements UserInterfaces {
     }
 
     @Override
-    public Usuario autenticarUsuario(String name, String senha) {
+    public  String autenticarUsuario(String name, String senha) {
     conm = DB.getConnection();
 
     try {
@@ -67,6 +67,7 @@ public class UserServices implements UserInterfaces {
             String nomeUsuario = rs.getString("nome");
             String senhaUsuario = rs.getString("senha");
             System.out.println("Usuario autenticado: " + nomeUsuario);
+            return nomeUsuario;
         } else {
             System.err.println("Usuario nao encontrado");
         }
