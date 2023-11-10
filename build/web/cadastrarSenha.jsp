@@ -34,78 +34,98 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" name="senha" class="form-control" placeholder="Senha">
+                        <input type="password" name="senha" class="form-control" placeholder="Senha" id="senha">
+                        
                     </div>
                     
-                     <div class="input-group form-group">
+                    <div class="input-group form-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            <span class="input-group-text"><i class="fas fa-key"></i></span>    
                         </div>
-                        <input type="password" name="senha2" class="form-control" placeholder="Confirm Senha">
+                        <input type="password" name="senha2" class="form-control" placeholder="Confirm Senha" id="senha2">
+                      
+                    </div>
+                    
+                    
+                   <div class="input-group-append ml-auto justify-content-end">
+                       
+                        <span class="text-primary mr-2 ">   Mostrar Senhas   </span>
+                        <input type="checkbox" onclick="mostrarSenha('senha', 'senha2')">
+                        
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mt-2">
                         <input type="submit" name="btn" value="Cadastrar" class="btn btn-outline-danger float-right login_btn">
                     </div>
                 </form>
 
-        <p class="text-danger" align="left">
-          <%
-    String nome = request.getParameter("nome");
-    String senha = request.getParameter("senha");
-    String senha2 = request.getParameter("senha2");
-    String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>]).{4,}$";
+                <p class="text-warning" align="left">
+                    <%
+                        String nome = request.getParameter("nome");
+                        String senha = request.getParameter("senha");
+                        String senha2 = request.getParameter("senha2");
+                        String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>]).{4,}$";
 
-    UserServices userServices = new UserServices();
-    
-    if (senha != null && !senha.isEmpty() && senha.equals(senha2) && nome != null && !nome.isEmpty()) {
-        try {
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(senha);
+                        UserServices userServices = new UserServices();
 
-            if (matcher.matches()) {
-                Integer cadastro = userServices.inserir(nome, senha);
+                        if (senha != null && !senha.isEmpty() && senha.equals(senha2) && nome != null && !nome.isEmpty()) {
+                            try {
+                                Pattern pattern = Pattern.compile(regex);
+                                Matcher matcher = pattern.matcher(senha);
 
-                if (cadastro == 1) {
-                    out.println("Cadastro Efetuado com Sucesso");
-                    out.println("<br>");
-                    out.println("<a href=\"index.jsp\">Retornar ao Login</a>");
-                } else {
-                    out.println("Erro no Cadastro. Tente Novamente.");
-                }
-            } else {
-                out.println("Formato Senha Inválida!");
-                  out.println("<br>");
-                out.println("=> Mínimo 4 Caracteres");
-                 out.println("<br>");
-                out.println("=> Um número");
-                 out.println("<br>");
-                out.println("=> Um Simbolo");
-                 out.println("<br>");
-                out.println("=> Uma Letra Maiúscula");
-               
-            }
-        } catch (Exception e) {
-            out.println("Senha já Cadastrada");
-        }
-    } else if (nome == null && senha == null && senha2 == null) {
-        out.println("");
-    } else if (nome == null || nome.isEmpty()) {
-        out.println("Campo nome vazio");
-    } else if (senha == null || senha.isEmpty()) {
-        out.println("Campo senha vazio");
-    } else if (senha2 == null || senha2.isEmpty()) {
-        out.println("Campo Confirmar senha está vazio");
-    } else {
-        out.println("Senha não Confere");
-    }
-%>
+                                if (matcher.matches()) {
+                                    Integer cadastro = userServices.inserir(nome, senha);
 
-
-        </p>
+                                    if (cadastro == 1) {
+                                        out.println("Cadastro Efetuado com Sucesso");
+                                        out.println("<br>");
+                                        out.println("<a href=\"index.jsp\">Retornar ao Login</a>");
+                                    } else {
+                                        out.println("Erro no Cadastro. Tente Novamente.");
+                                    }
+                                } else {
+                                    out.println("Formato Senha Inválida!");
+                                    out.println("<br>");                
+                                    out.println("=> Mínimo 4 Caracteres");
+                                    out.println("<br>");
+                                    out.println("=> Um número");
+                                    out.println("<br>");
+                                    out.println("=> Um Símbolo");
+                                    out.println("<br>");
+                                    out.println("=> Uma Letra Maiúscula");
+                                }
+                            } catch (Exception e) {
+                                out.println("Senha já Cadastrada");
+                            }
+                        } else if (nome == null && senha == null && senha2 == null) {
+                            out.println("");
+                        } else if (nome == null || nome.isEmpty()) {
+                            out.println("Campo nome vazio");
+                        } else if (senha == null || senha.isEmpty()) {
+                            out.println("Campo senha vazio");
+                        } else if (senha2 == null || senha2.isEmpty()) {
+                            out.println("Campo Confirmar senha está vazio");
+                        } else {
+                            out.println("Senha não Confere");
+                        }
+                    %>
+                </p>
             </div>
         </div>
     </div>
     <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script>
+        function mostrarSenha(idCampoSenha, idCampoSenha2) {
+            var senhaInput = document.getElementById(idCampoSenha);
+            var senhaInput2 = document.getElementById(idCampoSenha2);
+            if (senhaInput.type === "password" && senhaInput2.type === "password") {
+                senhaInput.type = "text";
+                 senhaInput2.type = "text";
+            } else {
+                senhaInput.type = "password";
+                senhaInput2.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>
