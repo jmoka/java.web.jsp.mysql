@@ -1,6 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="top.jota.dao.main.entidades.services.UserServices"%>
 <%@page import="top.jota.dao.main.entidades.Usuario"%>
+<%@ page import="java.util.regex.Pattern" %>
+<%@ page import="java.util.regex.Matcher" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,19 +54,36 @@
     String nome = request.getParameter("nome");
     String senha = request.getParameter("senha");
     String senha2 = request.getParameter("senha2");
+    String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>]).{4,}$";
 
     UserServices userServices = new UserServices();
-
-    if (senha != null && senha.equals(senha2) && senha != null && !senha.isEmpty() && nome != null && !nome.isEmpty()) {
+    
+    if (senha != null && !senha.isEmpty() && senha.equals(senha2) && nome != null && !nome.isEmpty()) {
         try {
-            Integer cadastro = userServices.inserir(nome, senha);
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(senha);
 
-            if (cadastro == 1) {
-                out.println("Cadastro Efetuado com Sucesso");
-                out.println("<br>");
-                out.println("<a href=\"index.jsp\">Retornar ao Login</a>");
+            if (matcher.matches()) {
+                Integer cadastro = userServices.inserir(nome, senha);
+
+                if (cadastro == 1) {
+                    out.println("Cadastro Efetuado com Sucesso");
+                    out.println("<br>");
+                    out.println("<a href=\"index.jsp\">Retornar ao Login</a>");
+                } else {
+                    out.println("Erro no Cadastro. Tente Novamente.");
+                }
             } else {
-                out.println("Erro no Cadastro. Tente Novamente.");
+                out.println("Formato Senha Inválida!");
+                  out.println("<br>");
+                out.println("=> Mínimo 4 Caracteres");
+                 out.println("<br>");
+                out.println("=> Um número");
+                 out.println("<br>");
+                out.println("=> Um Simbolo");
+                 out.println("<br>");
+                out.println("=> Uma Letra Maiúscula");
+               
             }
         } catch (Exception e) {
             out.println("Senha já Cadastrada");

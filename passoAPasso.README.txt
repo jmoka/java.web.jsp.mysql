@@ -12,6 +12,7 @@
 12- Criar a Tela de cadastro de Senha, implemantar a logica de inserção
 13- Correção da logica tela de Login
 14- Correção da logica tela de Cadastro
+15- logica de padrao de senha - fazer
 
 
 
