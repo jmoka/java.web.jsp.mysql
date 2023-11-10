@@ -64,7 +64,7 @@
                         String nome = request.getParameter("nome");
                         String senha = request.getParameter("senha");
                         String senha2 = request.getParameter("senha2");
-                        String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()-_=+{};:,<.>]).{4,}$";
+                        String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\\-_=+{};:,<.>]).{4,}$";
 
                         UserServices userServices = new UserServices();
 
