@@ -13,7 +13,7 @@ import top.jota.dao.main.entidades.Usuario;
 public interface UserInterfaces {
     
     public String autenticarUsuario(String nome, String senha);
-    public Usuario inserir(String nome, String senha);
+    public Integer inserir(String nome, String senha);
     
   
     

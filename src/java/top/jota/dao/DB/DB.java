@@ -30,7 +30,7 @@ public class DB {
             if (conm != null) {
                 System.out.println("Conexao Estabelecida com Sucesso!!");
             } else {
-                System.err.println("Não foi possível estabelecer a conexão com o banco de dados");
+                System.err.println("Não foi possível estabelecer a conexao com o banco de dados");
             }   
 
             return conm;

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import top.jota.dao.DB.DB;
 import top.jota.dao.DB.Exception.DbException;
 import top.jota.dao.DB.sql.UserSql;
-import top.jota.dao.main.entidades.Usuario;
+
 import top.jota.dao.main.entidades.interfacs.UserInterfaces;
 
 public class UserServices implements UserInterfaces {
@@ -16,7 +16,7 @@ public class UserServices implements UserInterfaces {
      ResultSet rs = null;
 
     @Override
-    public Usuario inserir(String nome, String senha) {       
+    public Integer inserir(String nome, String senha) {       
 
         try {
             conm = DB.getConnection();
@@ -28,19 +28,10 @@ public class UserServices implements UserInterfaces {
 
             // Execute o SQL
             int linhasAfetadas = st.executeUpdate(); // retorna um int
-
-            if (linhasAfetadas > 0) {
-                // Obtem as chaves geradas (IDs) após a inserção
-                ResultSet idGerado = st.getGeneratedKeys();
-                if (idGerado.next()) {
-                    int generatedId = idGerado.getInt(1); // 1 é o índice da coluna para o ID gerado
-                    System.out.println("Usuario Inserido com Sucesso. ID: " + generatedId);
-                }
-            } else {
-                System.err.println("Inserção falhou. Nenhum registro foi afetado.");
-            }
+            return linhasAfetadas;
+            
         } catch (SQLException e) {
-            System.err.println(new DbException("Verifique o SQL, dados não inseridos ==> " + e.getMessage()));
+            System.err.println(  new DbException("Verifique o SQL, dados nao inseridos ==> " + e.getMessage()));
         } finally {
             // Feche os recursos no bloco finally
             DB.fecharConexao();

@@ -46,32 +46,43 @@
                     </div>
                 </form>
 
-               <p class="text-danger" align="left">
-               <%
+        <p class="text-danger" align="left">
+          <%
     String nome = request.getParameter("nome");
     String senha = request.getParameter("senha");
     String senha2 = request.getParameter("senha2");
-    UserServices userservices = new UserServices();
-    
+
+    UserServices userServices = new UserServices();
+
     if (senha != null && senha.equals(senha2) && senha != null && !senha.isEmpty() && nome != null && !nome.isEmpty()) {
-        Usuario cadastro = userservices.inserir(nome, senha);
-        out.println("Cadastro Efetuado com Sucesso");
-        out.println("<br>");
-        out.println("<a href=\"index.jsp\">Retornar ao Login</a>");        
+        try {
+            Integer cadastro = userServices.inserir(nome, senha);
+
+            if (cadastro == 1) {
+                out.println("Cadastro Efetuado com Sucesso");
+                out.println("<br>");
+                out.println("<a href=\"index.jsp\">Retornar ao Login</a>");
+            } else {
+                out.println("Erro no Cadastro. Tente Novamente.");
+            }
+        } catch (Exception e) {
+            out.println("Senha já Cadastrada");
+        }
     } else if (nome == null && senha == null && senha2 == null) {
         out.println("");
-    } else if(nome == null || nome.isEmpty()){
-         out.println("Campo nome vazio");
-    } else if (senha == null || senha.isEmpty()){
+    } else if (nome == null || nome.isEmpty()) {
+        out.println("Campo nome vazio");
+    } else if (senha == null || senha.isEmpty()) {
         out.println("Campo senha vazio");
-    } else if(senha2 == null || senha2.isEmpty()){
-        out.println(" Campo Confirmar senha está vazio");
+    } else if (senha2 == null || senha2.isEmpty()) {
+        out.println("Campo Confirmar senha está vazio");
     } else {
         out.println("Senha não Confere");
     }
 %>
 
-                </p>
+
+        </p>
             </div>
         </div>
     </div>
