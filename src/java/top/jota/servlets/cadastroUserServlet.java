@@ -42,8 +42,7 @@ public class cadastroUserServlet extends HttpServlet {
                                     Integer cadastro = userServices.inserir(nome, senha);
 
                                     if (cadastro == 1) {
-                                       request.setAttribute("msg", "Cadastro Efetuado com Sucesso!<br>" +
-                                                                         "<a href=\"index.jsp\">Retornar ao Login</a>");
+                                       request.setAttribute("msg", "Cadastro Efetuado com Sucesso!<br>");
 
                                     } else {
                                        request.setAttribute("msg","Erro no Cadastro. Tente Novamente.");
