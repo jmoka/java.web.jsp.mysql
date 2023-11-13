@@ -48,8 +48,16 @@
                
 
                <p class="text-warning" align="left">
-                  <%= request.getAttribute("msg") %>
-               </p>
+                    <% 
+                    String msg = (String)request.getAttribute("msg");
+                        if(msg == null) {
+                            out.print("Jota Sistemas");
+                        } else {
+                            out.print(msg);
+                        }
+                    %>
+                </p>
+
                 
                 
             </div>

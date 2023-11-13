@@ -32,7 +32,7 @@ public class telaLoginServlet extends HttpServlet {
            String aut = userservices.autenticarUsuario(nome, senha);
 
                 if ((aut != null)) {
-                        response.sendRedirect("dashboard.html");
+                        response.sendRedirect("dashboerd.html");
                 } else if (nome == null || nome.isEmpty()) {
                 if (senha == null || senha.isEmpty()) {
                         request.setAttribute("msg","Nome e Senha estão vazios" );
@@ -45,11 +45,12 @@ public class telaLoginServlet extends HttpServlet {
                          request.setAttribute("msg","Campo Senha vazio");
                        
                 } else {
-                    request.setAttribute("msg","Usuário ou Senha não Encontrados");                      
-                }    
+                    request.setAttribute("msg","Usuário ou Senha não Encontrados");  
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("telaLogin.jsp");
+                    dispatcher.forward(request, response);                    
+                }
     
-                RequestDispatcher dispatcher = request.getRequestDispatcher("telaLogin.jsp");
-                dispatcher.forward(request, response);
+                
     }
 
    
