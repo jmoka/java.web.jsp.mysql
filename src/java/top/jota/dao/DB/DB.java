@@ -1,7 +1,7 @@
 package top.jota.dao.DB;
 
 
-import com.mysql.cj.protocol.Resultset;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ public class DB {
 
       private static Connection conm;
       private static PreparedStatement st;
-      private static Resultset rs;
+      private static ResultSet rs;
     
     public static Connection getConnection() {
         String url = "jdbc:mysql://localhost:3306/loja";
