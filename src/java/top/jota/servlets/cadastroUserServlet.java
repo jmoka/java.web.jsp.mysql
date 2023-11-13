@@ -33,7 +33,7 @@ public class cadastroUserServlet extends HttpServlet {
 
                         UserServices userServices = new UserServices();
 
-                        if (senha != null && !senha.isEmpty() && senha.equals(senha2) && nome != null && !nome.isEmpty()) {
+                           if (senha != null && !senha.isEmpty() && senha.equals(senha2) && nome != null && !nome.isEmpty()) {
                             try {
                                 Pattern pattern = Pattern.compile(regex);
                                 Matcher matcher = pattern.matcher(senha);
@@ -73,8 +73,6 @@ public class cadastroUserServlet extends HttpServlet {
                       
                         RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarUsuarioSenha.jsp");
                         dispatcher.forward(request, response);
-
-
     }   
 
      

@@ -31,24 +31,23 @@ public class telaLoginServlet extends HttpServlet {
            UserServices userservices = new UserServices();
            String aut = userservices.autenticarUsuario(nome, senha);
 
-                if ((aut != null)) {
+                 if (aut != null) {
                         response.sendRedirect("dashboerd.html");
-                } else if (nome == null || nome.isEmpty()) {
-                if (senha == null || senha.isEmpty()) {
-                        request.setAttribute("msg","Nome e Senha estão vazios" );
-                        
                 } else {
-                         request.setAttribute("msg","Informe o Usuário Campo Vazio");
-                        
-                }
-                } else if (senha == null || senha.isEmpty()) {
-                         request.setAttribute("msg","Campo Senha vazio");
-                       
-                } else {
-                    request.setAttribute("msg","Usuário ou Senha não Encontrados");  
+                        String msg = null;
+
+                        if (nome == null || nome.isEmpty()) {
+                                msg = "Nome está vazio";
+                        } else if (senha == null || senha.isEmpty()) {
+                                msg = "Senha está vazia";
+                        } else {
+                                msg = "Usuário ou Senha não Encontrados";
+                        }
+
+                    request.setAttribute("msg", msg);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("telaLogin.jsp");
-                    dispatcher.forward(request, response);                    
-                }
+                    dispatcher.forward(request, response);
+                } 
     
                 
     }

@@ -47,11 +47,16 @@
                     </div>
                     
                     
-                   <div class="input-group-append ml-auto justify-content-end">
+                   <div class="input-group-append d-flex justify-content-between align-items-center">
                        
-                        <span class="text-primary mr-2 ">   Mostrar Senhas   </span>
+                       <span class="text-primary mr-2 text-align-left"> 
+                           <a href="telaLogin.jsp">Retornar ao Login </a>                           
+                       </span>
+                       
+                       <span>
+                        <span class="text-primary mr-1">   Mostrar Senhas   </span>
                         <input type="checkbox" onclick="mostrarSenha('senha', 'senha2')">
-                        
+                        </span>
                     </div>
 
                     <div class="form-group mt-2">
