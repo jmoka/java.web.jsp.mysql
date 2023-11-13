@@ -13,8 +13,11 @@
 13- Correção da logica tela de Login
 14- Correção da logica tela de Cadastro
 15- logica de padrao de senha - fazer
+16- Incusao da pasta WEB-INF e a troca dacor do texto de evido no index, troca do para o mysql conector 8.2 jar
 
 
+
+C:\Users\jotac\.temp\aplicacoesJava\FACULDADE\Terceiro_Semestre\nivel-4\MN4Mundo3\web\css\style.css
 
 
 

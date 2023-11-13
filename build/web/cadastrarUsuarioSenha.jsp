@@ -19,10 +19,10 @@
         <div class="card card-login mx-auto text-center bg-dark">
             <div class="card-header mx-auto bg-dark">
                 <span> <img src="img/logo.jpg" class="w-75" alt="Logo"> </span><br/>
-                <span class="logo_title mt-5"> Cadastrar Senha </span>
+                <span class="logo_title mt-5">Cadastrar Usuário e Senha</span>
             </div>
             <div class="card-body">
-                <form action="" method="post">
+                <form action="cadastrouser" method="post">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -60,60 +60,12 @@
                 </form>
 
                 <p class="text-warning" align="left">
-                    <%
-                        String nome = request.getParameter("nome");
-                        String senha = request.getParameter("senha");
-                        String senha2 = request.getParameter("senha2");
-                        String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()\\-_=+{};:,<.>]).{4,}$";
-
-                        UserServices userServices = new UserServices();
-
-                        if (senha != null && !senha.isEmpty() && senha.equals(senha2) && nome != null && !nome.isEmpty()) {
-                            try {
-                                Pattern pattern = Pattern.compile(regex);
-                                Matcher matcher = pattern.matcher(senha);
-
-                                if (matcher.matches()) {
-                                    Integer cadastro = userServices.inserir(nome, senha);
-
-                                    if (cadastro == 1) {
-                                        out.println("Cadastro Efetuado com Sucesso");
-                                        out.println("<br>");
-                                        out.println("<a href=\"index.jsp\">Retornar ao Login</a>");
-                                    } else {
-                                        out.println("Erro no Cadastro. Tente Novamente.");
-                                    }
-                                } else {
-                                    out.println("Formato Senha Inválida!");
-                                    out.println("<br>");                
-                                    out.println("=> Mínimo 4 Caracteres");
-                                    out.println("<br>");
-                                    out.println("=> Um número");
-                                    out.println("<br>");
-                                    out.println("=> Um Símbolo");
-                                    out.println("<br>");
-                                    out.println("=> Uma Letra Maiúscula");
-                                }
-                            } catch (Exception e) {
-                                out.println("Senha já Cadastrada");
-                            }
-                        } else if (nome == null && senha == null && senha2 == null) {
-                            out.println("");
-                        } else if (nome == null || nome.isEmpty()) {
-                            out.println("Campo nome vazio");
-                        } else if (senha == null || senha.isEmpty()) {
-                            out.println("Campo senha vazio");
-                        } else if (senha2 == null || senha2.isEmpty()) {
-                            out.println("Campo Confirmar senha está vazio");
-                        } else {
-                            out.println("Senha não Confere");
-                        }
-                    %>
+                  <%= request.getAttribute("msg") %>
                 </p>
             </div>
         </div>
     </div>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/styleTelaLoginCadastroSenha.css"/>
     <script>
         function mostrarSenha(idCampoSenha, idCampoSenha2) {
             var senhaInput = document.getElementById(idCampoSenha);

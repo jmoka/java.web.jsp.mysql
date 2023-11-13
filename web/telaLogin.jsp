@@ -22,10 +22,10 @@
         <div class="card card-login mx-auto text-center bg-dark">
             <div class="card-header mx-auto bg-dark">
                 <span> <img src="img/logo.jpg" class="w-75" alt="Logo"> </span><br/>
-                <span class="logo_title mt-5"> Login Dashboard </span>
+                <span class="logo_title mt-5"> Login</span>
             </div>
             <div class="card-body">
-                <form action="" method="post">
+                <form action="telaLoginServlet" method="post">
                     <div class="input-group form-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -48,35 +48,15 @@
                
 
                <p class="text-warning" align="left">
-<%
-    String nome = request.getParameter("nome");
-    String senha = request.getParameter("senha");
-    UserServices userservices = new UserServices();
-    String aut = userservices.autenticarUsuario(nome, senha);
-
-    if ((aut != null)) {
-        response.sendRedirect("dashboard.jsp");
-    } else if (nome == null || nome.isEmpty()) {
-        if (senha == null || senha.isEmpty()) {
-            out.println("Nome e Senha estão vazios");
-        } else {
-            out.println("Informe o Usuário Campo Vazio");
-        }
-    } else if (senha == null || senha.isEmpty()) {
-        out.println("Campo Senha vazio");
-    } else {
-        out.println("Usuário ou Senha não Encontrados");
-    }
-%>
-
-
-</p>
-
+                  <%= request.getAttribute("msg") %>
+               </p>
+                
+                
             </div>
-                <div align="right" class = "mr-md-4"> <a href="cadastrarSenha.jsp">Cadastrar</a></div>
+                <div align="right" class = "mr-md-4"> <a href="cadastrarUsuarioSenha.jsp">Cadastrar</a></div>
         </div>
     </div>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/styleTelaLoginCadastroSenha.css"/>
 </body>
 </html>
