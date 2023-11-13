@@ -47,7 +47,7 @@
                 </form>
                
 
-               <p class="text-danger" align="left">
+               <p class="text-warning" align="left">
 <%
     String nome = request.getParameter("nome");
     String senha = request.getParameter("senha");
